@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import ie.wspace.lab4notesapp.model.NoteEntity;
+import ie.wspace.lab4notesapp.database.NoteEntity;
 
 public class SampleData {
     private static final String SAMPLE_TEXT_1 = "A simple note";

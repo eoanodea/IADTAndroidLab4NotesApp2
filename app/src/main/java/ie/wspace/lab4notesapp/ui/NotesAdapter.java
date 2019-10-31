@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ie.wspace.lab4notesapp.R;
-import ie.wspace.lab4notesapp.model.NoteEntity;
+import ie.wspace.lab4notesapp.database.NoteEntity;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 

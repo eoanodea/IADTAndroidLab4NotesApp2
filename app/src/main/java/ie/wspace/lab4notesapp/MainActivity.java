@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,8 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import ie.wspace.lab4notesapp.model.NoteEntity;
+import ie.wspace.lab4notesapp.database.NoteEntity;
 import ie.wspace.lab4notesapp.ui.NotesAdapter;
 import ie.wspace.lab4notesapp.utilities.SampleData;
 
