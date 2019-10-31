@@ -1,5 +1,6 @@
 package ie.wspace.lab4notesapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,17 +11,34 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import ie.wspace.lab4notesapp.model.NoteEntity;
+import ie.wspace.lab4notesapp.ui.NotesAdapter;
+import ie.wspace.lab4notesapp.utilities.SampleData;
 
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
+
+//    @OnClick(R.id.fab)
+//    void fabClickHandler() {
+//        Intent intent = new Intent(this, EditorActivity.class);
+//        startActivity(intent);
+//    }
+
+    private List<NoteEntity> notesData = new ArrayList<>();
+    private NotesAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +50,30 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initRecyclerView();
 
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(), EditorActivity.class);
+                startActivity(intent);
+
             }
         });
+
+        notesData.addAll(SampleData.getNotes());
+        for(NoteEntity note : notesData) {
+            Log.i("NotesApp", note.toString());
+        }
     }
 
     private void initRecyclerView() {
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        mAdapter = new NotesAdapter(notesData, this);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
